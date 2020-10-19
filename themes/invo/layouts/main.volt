@@ -32,7 +32,7 @@
             {% for controller, menu in topMenu %}
                 {% if (session.has('auth') and menu['with_auth'] === true) or menu['with_auth'] === false %}
                 <li class="nav-item {% if controller == dispatcher.getControllerName()|lower %}active{% endif %}">
-                    <a class="nav-link" href="{{ menu['uri'] }}">{{ menu['title'] }}</a>
+                      {{link_to( menu['uri'] , menu['title']  , 'class':'nav-link'  )}}
                 </li>
                 {% endif %}
             {% endfor %}
@@ -42,9 +42,9 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     {% if session.has('auth') %}
-                    <a class="nav-link" href="/session/end">Log Out</a>
+                        {{link_to('/session/end', 'Log Out','class':'nav-link' )}}
                     {% else %}
-                    <a class="nav-link" href="/session/index">Log In/Sign Up</a>
+                        {{link_to('/session/index', 'Log In/Sign Up','class':'nav-link' )}}
                     {% endif %}
                 </li>
             </ul>
