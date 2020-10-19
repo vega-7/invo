@@ -39,8 +39,10 @@ try {
     /**
      * Init MVC Application and send output to client
      */
+    $fixed_uri="/".substr($_SERVER['REQUEST_URI'] ,
+            strlen($di["url"]->getBaseUri()) );
     (new Application($di))
-        ->handle($_SERVER['REQUEST_URI'])
+        ->handle( $fixed_uri)
         ->send();
 } catch (Exception $e) {
     echo $e->getMessage() . '<br>';
